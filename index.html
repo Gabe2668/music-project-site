@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Reviews</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>MELONDY REVIEWS</h1>
+    <a href="create.html" class="create-btn">+ Create Review</a>
+  </header>
+
+  <main>
+    <div class="filters">
+      <button onclick="filterBy('ALL')">ALL</button>
+      <button onclick="filterBy('CLASSIC')">CLASSIC</button>
+      <button onclick="filterBy('10/10')">10/10</button>
+      <button onclick="filterBy('NOT GOOD')">NOT GOOD</button>
+    </div>
+
+    <div id="reviews-grid"></div>
+  </main>
+
+  <script src="fetch.js"></script>
+</body>
+</html>
