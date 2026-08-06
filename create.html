@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Review</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Post New Review</h2>
+    
+    <form id="review-form">
+      <label>Spotify Album Link or ID:</label>
+      <input type="text" id="spotify-id" placeholder="e.g. 1A2B3C..." required />
+
+      <label>Rating Badge:</label>
+      <select id="rating">
+        <option value="CLASSIC">CLASSIC/10</option>
+        <option value="10/10">10/10</option>
+        <option value="9/10">9/10</option>
+        <option value="8/10">8/10</option>
+        <option value="7/10">7/10</option>
+        <option value="NOT GOOD">NOT GOOD</option>
+      </select>
+
+      <label>Review Text:</label>
+      <textarea id="review-body" rows="6" placeholder="Write your thoughts..." required></textarea>
+
+      <button type="submit">Publish Review</button>
+    </form>
+  </div>
+
+  <script src="posting.js"></script>
+</body>
+</html>
