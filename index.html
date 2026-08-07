@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GABRIEL WHITE MUSIC REVIEWS</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GABRIEL WHITE MUSIC REVIEWS</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header>
-    <div class="logo-container">
-      <h1>GW MUSIC REVIEWS</h1>
-      <a href="create.html" class="create-btn">+ Create Review</a>
-    </div>
-    
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search albums, artists, or reviews..." onkeyup="handleSearch()" />
-    </div>
-  </header>
 
-  <main>
-    <div class="filters">
-      <button onclick="filterBy('ALL')" class="active">ALL</button>
-      <button onclick="filterBy('CLASSIC')">CLASSIC</button>
-      <button onclick="filterBy('10/10')">10/10</button>
-      <button onclick="filterBy('9/10')">9/10</button>
-      <button onclick="filterBy('8/10')">8/10</button>
-      <button onclick="filterBy('7/10')">7/10</button>
-      <button onclick="filterBy('6/10')">6/10</button>
-      <button onclick="filterBy('5/10')">5/10</button>
-      <button onclick="filterBy('4/10')">4/10</button>
-      <button onclick="filterBy('3/10')">3/10</button>
-      <button onclick="filterBy('2/10')">2/10</button>
-      <button onclick="filterBy('1/10')">1/10</button>
-      <button onclick="filterBy('0/10')">0/10</button>
-      <button onclick="filterBy('NOT GOOD')">NOT GOOD</button>
-    </div>
+<header>
 
-    <div id="reviews-grid"></div>
-  </main>
+<div class="logo-container">
+<h1>GW MUSIC REVIEWS</h1>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="fetch.js"></script>
+<div class="header-actions">
+<button onclick="sortRecent()" class="header-btn">
+MOST RECENT
+</button>
+</div>
+
+</div>
+
+
+<div class="search-container">
+<input 
+type="text" 
+id="search-input" 
+placeholder="Search albums, artists, genres..."
+onkeyup="handleSearch()">
+</div>
+
+
+</header>
+
+
+<main>
+
+
+<div id="rating-sections"></div>
+
+
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="fetch.js"></script>
+
+
 </body>
 </html>
