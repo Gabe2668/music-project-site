@@ -1,17 +1,20 @@
-/* will work on later */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #0d1117;
-  color: #c9d1d9;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0b0e14;
+  color: #e6edf3;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 0;
   padding: 20px;
 }
 
 header {
   max-width: 900px;
-  margin: 0 auto 30px auto;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #30363d;
+  margin: 0 auto 25px auto;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 15px;
 }
 
 .logo-container {
@@ -21,19 +24,19 @@ header {
 }
 
 h1 {
-  color: #ffffff;
-  margin: 0;
+  font-size: 28px;
   letter-spacing: 2px;
+  margin: 0;
 }
 
 .create-btn, .back-link {
   background-color: #238636;
-  color: #ffffff;
-  padding: 8px 16px;
+  color: #fff;
+  padding: 8px 14px;
   text-decoration: none;
   border-radius: 6px;
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .create-btn:hover {
@@ -45,23 +48,24 @@ h1 {
   margin: 0 auto 20px auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
-.filters button {
+.filter-btn {
   background-color: #161b22;
   border: 1px solid #30363d;
   color: #8b949e;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 12px;
   font-weight: bold;
 }
 
-.filters button:hover, .filters button.active {
+.filter-btn.active, .filter-btn:hover {
   background-color: #21262d;
-  color: #ffffff;
-  border-color: #8b949e;
+  color: #58a6ff;
+  border-color: #58a6ff;
 }
 
 #reviews-grid {
@@ -69,18 +73,17 @@ h1 {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 details.review-card {
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 8px;
-  overflow: hidden;
 }
 
 summary {
-  padding: 16px;
+  padding: 14px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -92,11 +95,12 @@ summary::-webkit-details-marker {
 }
 
 .album-cover {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 4px;
   object-fit: cover;
-  margin-right: 16px;
+  margin-right: 14px;
+  background-color: #21262d;
 }
 
 .album-info {
@@ -104,38 +108,38 @@ summary::-webkit-details-marker {
 }
 
 .album-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   color: #ffffff;
 }
 
 .score-badge {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 4px;
   background-color: #21262d;
   color: #58a6ff;
   border: 1px solid #30363d;
-  padding: 2px 8px;
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
 }
 
 .expand-icon {
   color: #8b949e;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .review-content {
-  padding: 0 16px 16px 16px;
-  border-top: 1px solid #30363d;
-  margin-top: 8px;
-  color: #8b949e;
-  line-height: 1.6;
+  padding: 14px;
+  border-top: 1px solid #21262d;
+  color: #c9d1d9;
+  line-height: 1.5;
+  font-size: 14px;
 }
 
 .form-container {
-  max-width: 500px;
+  max-width: 480px;
   margin: 40px auto;
   background-color: #161b22;
   padding: 24px;
@@ -147,12 +151,7 @@ summary::-webkit-details-marker {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.form-header h2 {
-  margin: 0;
-  color: #ffffff;
+  margin-bottom: 16px;
 }
 
 form {
@@ -162,7 +161,7 @@ form {
 }
 
 label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 
@@ -183,7 +182,6 @@ button[type="submit"] {
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 button[type="submit"]:hover {
