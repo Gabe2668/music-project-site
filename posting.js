@@ -25,34 +25,71 @@ async function fetchSpotifyAlbumData(albumId) {
 
         console.log("Fetching Spotify:", albumId);
 
+
         const response = await fetch(
-            `https://open.spotify.com/oembed?url=https://open.spotify.com/album/${albumId}`
+            `https://open.spotify.com/embed/album/${albumId}`
         );
+
 
         if (!response.ok) {
             throw new Error("Spotify lookup failed");
         }
 
-        const data = await response.json();
 
-        const parts = data.title.split(" by ");
+        const html = await response.text();
+
+
+        const match = html.match(
+            /<script id="__NEXT_DATA__" type="application\/json">(.*?)<\/script>/
+        );
+
+
+        if (!match) {
+            throw new Error("Could not find Spotify metadata");
+        }
+
+
+        const json = JSON.parse(match[1]);
+
+
+        const album =
+            json.props.pageProps.state.data.entity;
+
 
         return {
-            title: parts[0] || "Unknown Album",
-            artist: parts[1] || "Unknown Artist",
-            cover_url: data.thumbnail_url || ""
+
+            title: album.name,
+
+            artist: album.artists.items[0].profile.name,
+
+            year: album.date.year.toString(),
+
+            cover_url:
+                album.coverArt.sources[0].url
+
         };
 
-    } catch(error){
+
+    } catch(error) {
+
 
         console.error("Spotify error:", error);
 
+
         return {
+
             title:"Unknown Album",
+
             artist:"Unknown Artist",
+
+            year:"Unknown",
+
             cover_url:""
+
         };
+
     }
+
 }
 
 
