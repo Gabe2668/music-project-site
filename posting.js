@@ -1,26 +1,36 @@
-// api/create-review.js
-import { createClient } from '@sanity/client';
+// Connected to your Supabase project
+const SUPABASE_URL = 'https://ehwbxyuvkftikeigwxcz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVod2J4eXV2a2Z0aWtlaWd3eGN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNTEyNjIsImV4cCI6MjEwMTYyNzI2Mn0.Yca_6GW5Apnfybb-11Jg7XdJamol3DrbBwqXV2yZQzQ';
 
-const client = createClient({
-  projectId: 'your_project_id',
-  dataset: 'production',
-  token: process.env.SANITY_WRITE_TOKEN, // Your secret key
-  useCdn: false,
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+document.getElementById('review-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const spotifyInput = document.getElementById('spotify-id').value;
+  const rating = document.getElementById('rating').value;
+  const reviewText = document.getElementById('review-body').value;
+
+  // Placeholder album data until Spotify API integration
+  const newReview = {
+    title: "Test Album",
+    artist: "Test Artist",
+    year: "2026",
+    cover_url: "https://via.placeholder.com/300",
+    rating: rating,
+    review_text: reviewText
+  };
+
+  // Insert review into Supabase table
+  const { data, error } = await supabase
+    .from('reviews')
+    .insert([newReview]);
+
+  if (error) {
+    console.error('Error posting:', error);
+    alert('Failed to post. Open developer console (F12) to see details.');
+  } else {
+    alert('Review Posted Successfully!');
+    window.location.href = 'index.html';
+  }
 });
-
-export async function POST(req) {
-  const body = await req.json();
-  
-  const newReview = await client.create({
-    _type: 'review',
-    title: body.title,
-    artist: body.artist,
-    year: body.year,
-    coverUrl: body.coverUrl,
-    rating: body.rating, // e.g., "CLASSIC", "8/10"
-    reviewText: body.reviewText,
-    createdAt: new Date().toISOString(),
-  });
-
-  return Response.json({ success: true, id: newReview._id });
-}
