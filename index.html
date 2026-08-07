@@ -8,13 +8,16 @@
 </head>
 <body>
   <header>
-    <h1>GABRIEL WHITE REVIEWS</h1>
-    <a href="create.html" class="create-btn">+ Create Review</a>
+    <div class="logo-container">
+      <h1>MELONDY</h1>
+      <a href="create.html" class="create-btn">+ Create Review</a>
+    </div>
   </header>
 
   <main>
     <div class="filters">
-      <button onclick="filterBy('ALL')">ALL</button>
+      <button onclick="filterBy('ALL')" class="active">ALL</button>
+      <button onclick="filterBy('CLASSIC')">CLASSIC</button>
       <button onclick="filterBy('10/10')">10/10</button>
       <button onclick="filterBy('9/10')">9/10</button>
       <button onclick="filterBy('8/10')">8/10</button>
@@ -25,11 +28,14 @@
       <button onclick="filterBy('3/10')">3/10</button>
       <button onclick="filterBy('2/10')">2/10</button>
       <button onclick="filterBy('1/10')">1/10</button>
+      <button onclick="filterBy('0/10')">0/10</button>
+      <button onclick="filterBy('NOT GOOD')">NOT GOOD</button>
     </div>
 
     <div id="reviews-grid"></div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="fetch.js"></script>
 </body>
 </html>
