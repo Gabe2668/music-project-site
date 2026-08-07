@@ -4,6 +4,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let allReviews = [];
+let currentFilter = 'ALL';
 
 async function loadReviews() {
   const grid = document.getElementById('reviews-grid');
@@ -15,8 +16,8 @@ async function loadReviews() {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Fetch Error:', error);
-    grid.innerHTML = '<p style="color: #f85149;">Error loading reviews. Check console.</p>';
+    console.error('Error fetching reviews:', error);
+    grid.innerHTML = `<p style="color: #f85149;">Failed to load reviews. Error: ${error.message}</p>`;
     return;
   }
 
@@ -29,7 +30,7 @@ function renderReviews(reviews) {
   grid.innerHTML = '';
 
   if (reviews.length === 0) {
-    grid.innerHTML = '<p style="color: #8b949e;">No reviews posted yet.</p>';
+    grid.innerHTML = '<p style="color: #8b949e; padding: 20px 0;">No reviews found.</p>';
     return;
   }
 
@@ -37,23 +38,18 @@ function renderReviews(reviews) {
     const card = document.createElement('details');
     card.className = 'review-card';
 
-    const title = review.title || 'Album Review';
-    const artist = review.artist || '';
-    const rating = review.rating || 'N/A';
-    const text = review.review_text || '';
-    const cover = review.cover_url || 'https://via.placeholder.com/300/161b22/58a6ff?text=Album';
-
     card.innerHTML = `
       <summary>
-        <img src="${cover}" class="album-cover" alt="Cover" />
+        <img src="${review.cover_url || 'https://via.placeholder.com/300'}" class="album-cover" alt="Album Cover" />
         <div class="album-info">
-          <div class="album-title">${title} ${artist ? '- ' + artist : ''}</div>
-          <div class="score-badge">${rating}</div>
+          <div class="album-title">${review.title || 'Untitled Album'}</div>
+          <div class="album-artist">${review.artist || 'Unknown Artist'}</div>
+          <div class="score-badge">${review.rating || 'NO SCORE'}</div>
         </div>
-        <div class="expand-icon">▼ Click to Read</div>
+        <div class="expand-icon">▼ READ</div>
       </summary>
       <div class="review-content">
-        <p>${text}</p>
+        <p>${review.review_text || 'No review text provided.'}</p>
       </div>
     `;
 
@@ -62,19 +58,41 @@ function renderReviews(reviews) {
 }
 
 function filterBy(score) {
-  const buttons = document.querySelectorAll('.filter-btn');
+  currentFilter = score;
+  const buttons = document.querySelectorAll('.filters button');
   buttons.forEach(btn => btn.classList.remove('active'));
   
   if (event && event.target) {
     event.target.classList.add('active');
   }
 
-  if (score === 'ALL') {
-    renderReviews(allReviews);
-  } else {
-    const filtered = allReviews.filter(r => r.rating === score);
-    renderReviews(filtered);
+  applyFiltersAndSearch();
+}
+
+function handleSearch() {
+  applyFiltersAndSearch();
+}
+
+function applyFiltersAndSearch() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+
+  let filtered = allReviews;
+
+  // Filter by Rating Badge
+  if (currentFilter !== 'ALL') {
+    filtered = filtered.filter(r => r.rating === currentFilter);
   }
+
+  // Filter by Search Query
+  if (query.trim() !== '') {
+    filtered = filtered.filter(r => 
+      (r.title && r.title.toLowerCase().includes(query)) ||
+      (r.artist && r.artist.toLowerCase().includes(query)) ||
+      (r.review_text && r.review_text.toLowerCase().includes(query))
+    );
+  }
+
+  renderReviews(filtered);
 }
 
 document.addEventListener('DOMContentLoaded', loadReviews);
