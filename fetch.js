@@ -15,12 +15,12 @@ async function loadReviews() {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Error fetching reviews:', error);
-    grid.innerHTML = '<p style="color: #f85149;">Failed to load reviews.</p>';
+    console.error('Fetch Error:', error);
+    grid.innerHTML = '<p style="color: #f85149;">Error loading reviews. Check console.</p>';
     return;
   }
 
-  allReviews = data;
+  allReviews = data || [];
   renderReviews(allReviews);
 }
 
@@ -29,7 +29,7 @@ function renderReviews(reviews) {
   grid.innerHTML = '';
 
   if (reviews.length === 0) {
-    grid.innerHTML = '<p style="color: #8b949e;">No reviews found.</p>';
+    grid.innerHTML = '<p style="color: #8b949e;">No reviews posted yet.</p>';
     return;
   }
 
@@ -37,17 +37,23 @@ function renderReviews(reviews) {
     const card = document.createElement('details');
     card.className = 'review-card';
 
+    const title = review.title || 'Album Review';
+    const artist = review.artist || '';
+    const rating = review.rating || 'N/A';
+    const text = review.review_text || '';
+    const cover = review.cover_url || 'https://via.placeholder.com/300/161b22/58a6ff?text=Album';
+
     card.innerHTML = `
       <summary>
-        <img src="${review.cover_url || 'https://via.placeholder.com/300'}" class="album-cover" alt="Cover" />
+        <img src="${cover}" class="album-cover" alt="Cover" />
         <div class="album-info">
-          <div class="album-title">${review.title || 'Untitled'} - ${review.artist || 'Unknown'}</div>
-          <div class="score-badge">${review.rating}</div>
+          <div class="album-title">${title} ${artist ? '- ' + artist : ''}</div>
+          <div class="score-badge">${rating}</div>
         </div>
-        <div class="expand-icon">▼ Click to Expand</div>
+        <div class="expand-icon">▼ Click to Read</div>
       </summary>
       <div class="review-content">
-        <p>${review.review_text}</p>
+        <p>${text}</p>
       </div>
     `;
 
@@ -56,9 +62,12 @@ function renderReviews(reviews) {
 }
 
 function filterBy(score) {
-  const buttons = document.querySelectorAll('.filters button');
+  const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  
+  if (event && event.target) {
+    event.target.classList.add('active');
+  }
 
   if (score === 'ALL') {
     renderReviews(allReviews);
