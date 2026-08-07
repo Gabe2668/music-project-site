@@ -12,24 +12,28 @@
       <h1>MELONDY</h1>
       <a href="create.html" class="create-btn">+ Create Review</a>
     </div>
+    
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search albums, artists, or reviews..." onkeyup="handleSearch()" />
+    </div>
   </header>
 
   <main>
-    <div class="filters" id="filter-container">
-      <button onclick="filterBy('ALL')" class="filter-btn active">ALL</button>
-      <button onclick="filterBy('CLASSIC')" class="filter-btn">CLASSIC</button>
-      <button onclick="filterBy('10/10')" class="filter-btn">10/10</button>
-      <button onclick="filterBy('9/10')" class="filter-btn">9/10</button>
-      <button onclick="filterBy('8/10')" class="filter-btn">8/10</button>
-      <button onclick="filterBy('7/10')" class="filter-btn">7/10</button>
-      <button onclick="filterBy('6/10')" class="filter-btn">6/10</button>
-      <button onclick="filterBy('5/10')" class="filter-btn">5/10</button>
-      <button onclick="filterBy('4/10')" class="filter-btn">4/10</button>
-      <button onclick="filterBy('3/10')" class="filter-btn">3/10</button>
-      <button onclick="filterBy('2/10')" class="filter-btn">2/10</button>
-      <button onclick="filterBy('1/10')" class="filter-btn">1/10</button>
-      <button onclick="filterBy('0/10')" class="filter-btn">0/10</option>
-      <button onclick="filterBy('NOT GOOD')" class="filter-btn">NOT GOOD</button>
+    <div class="filters">
+      <button onclick="filterBy('ALL')" class="active">ALL</button>
+      <button onclick="filterBy('CLASSIC')">CLASSIC</button>
+      <button onclick="filterBy('10/10')">10/10</button>
+      <button onclick="filterBy('9/10')">9/10</button>
+      <button onclick="filterBy('8/10')">8/10</button>
+      <button onclick="filterBy('7/10')">7/10</button>
+      <button onclick="filterBy('6/10')">6/10</button>
+      <button onclick="filterBy('5/10')">5/10</button>
+      <button onclick="filterBy('4/10')">4/10</button>
+      <button onclick="filterBy('3/10')">3/10</button>
+      <button onclick="filterBy('2/10')">2/10</button>
+      <button onclick="filterBy('1/10')">1/10</button>
+      <button onclick="filterBy('0/10')">0/10</button>
+      <button onclick="filterBy('NOT GOOD')">NOT GOOD</button>
     </div>
 
     <div id="reviews-grid"></div>
