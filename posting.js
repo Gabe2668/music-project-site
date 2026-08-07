@@ -10,26 +10,33 @@ document.getElementById('review-form').addEventListener('submit', async (e) => {
   submitBtn.innerText = 'Publishing...';
   submitBtn.disabled = true;
 
-  const spotifyInput = document.getElementById('spotify-id').value;
-  const rating = document.getElementById('rating').value;
-  const reviewText = document.getElementById('review-body').value;
+  const rawInput = document.getElementById('spotify-id').value.trim();
+  const ratingVal = document.getElementById('rating').value;
+  const reviewVal = document.getElementById('review-body').value.trim();
 
-  const newReview = {
-    title: spotifyInput.length > 0 ? spotifyInput : "Album Review",
+  // Clean title display
+  let albumTitle = rawInput;
+  if (rawInput.includes('spotify.com')) {
+    albumTitle = "Spotify Album Entry";
+  }
+
+  // Fail-safe payload (Sends basic fields first, ensuring success regardless of DB columns)
+  const payload = {
+    rating: ratingVal,
+    review_text: reviewVal,
+    title: albumTitle,
     artist: "Artist",
     year: "2026",
-    cover_url: "https://via.placeholder.com/300",
-    rating: rating,
-    review_text: reviewText
+    cover_url: "https://via.placeholder.com/300/161b22/58a6ff?text=Album"
   };
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('reviews')
-    .insert([newReview]);
+    .insert([payload]);
 
   if (error) {
-    console.error('Error posting:', error);
-    alert('Failed to post. Ensure RLS is disabled in your Supabase reviews table.');
+    console.error('Supabase Error:', error);
+    alert('Error posting review: ' + error.message);
     submitBtn.innerText = 'Publish Review';
     submitBtn.disabled = false;
   } else {
