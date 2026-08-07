@@ -1,53 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 <title>GABRIEL WHITE MUSIC REVIEWS</title>
+
+
 <link rel="stylesheet" href="style.css">
+
+
 </head>
+
+
+
 
 <body>
 
+
+
 <header>
 
+
+
 <div class="logo-container">
-<h1>GW MUSIC REVIEWS</h1>
 
-<div class="header-actions">
-<button onclick="sortRecent()" class="header-btn">
+
+<h1>
+GW MUSIC REVIEWS
+</h1>
+
+
+
+<button 
+class="header-btn"
+onclick="sortRecent()">
+
 MOST RECENT
+
 </button>
-</div>
+
+
 
 </div>
+
+
+
 
 
 <div class="search-container">
-<input 
-type="text" 
-id="search-input" 
+
+
+<input
+
+type="text"
+
+id="search-input"
+
 placeholder="Search albums, artists, genres..."
+
 onkeyup="handleSearch()">
+
+
 </div>
+
+
 
 
 </header>
 
 
+
+
+
+
+
+
 <main>
 
 
-<div id="rating-sections"></div>
+<div id="rating-sections">
+
+
+
+</div>
 
 
 </main>
 
 
 
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script src="fetch.js"></script>
 
 
+
 </body>
+
+
 </html>
