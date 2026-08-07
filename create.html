@@ -1,49 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Create Review</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Review</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
-  <div class="form-container">
-    <div class="form-header">
-      <h2>Post New Review</h2>
-      <a href="index.html" class="back-link">← Back to Home</a>
-    </div>
-    
-    <form id="review-form">
-      <label for="spotify-id">Spotify Album Link or Album ID:</label>
-      <input type="text" id="spotify-id" placeholder="https://open.spotify.com/album/4aawyAB9vmqN3uQ7FjRGTy" required />
 
-      <label for="rating">Rating Badge:</label>
-      <select id="rating" name="rating">
-        <option value="CLASSIC">CLASSIC/10</option>
-        <option value="10/10">10/10</option>
-        <option value="9/10">9/10</option>
-        <option value="8/10">8/10</option>
-        <option value="7/10">7/10</option>
-        <option value="6/10">6/10</option>
-        <option value="5/10">5/10</option>
-        <option value="4/10">4/10</option>
-        <option value="3/10">3/10</option>
-        <option value="2/10">2/10</option>
-        <option value="1/10">1/10</option>
-        <option value="0/10">0/10</option>
-        <option value="NOT GOOD">NOT GOOD</option>
-        <option value="OTHER">OTHER SCORES</option>
-        <option value="NO SCORE">NO SCORE</option>
-      </select>
 
-      <label for="review-body">Review Text:</label>
-      <textarea id="review-body" rows="6" placeholder="Write your thoughts on this album..." required></textarea>
+<div id="password-screen" class="form-container">
 
-      <button type="submit" id="submit-btn">Publish Review</button>
-    </form>
-  </div>
+<h2>Admin Access</h2>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="posting.js"></script>
+<input 
+type="password" 
+id="password-input"
+placeholder="Password">
+
+
+<button onclick="checkPassword()">
+ENTER
+</button>
+
+
+<p id="password-error"></p>
+
+
+</div>
+
+
+
+
+<div class="form-container" id="review-panel" style="display:none">
+
+
+<div class="form-header">
+
+<h2>Post New Review</h2>
+
+
+<a href="index.html" class="back-link">
+← Back
+</a>
+
+
+</div>
+
+
+
+
+<form id="review-form">
+
+
+<label>
+Spotify Album Link or ID:
+</label>
+
+
+<input 
+id="spotify-id"
+required
+placeholder="Spotify album URL or ID">
+
+
+
+
+
+<label>
+Rating:
+</label>
+
+
+<select id="rating">
+
+<option value="10/10">10/10</option>
+<option value="9/10">9/10</option>
+<option value="8/10">8/10</option>
+<option value="7/10">7/10</option>
+<option value="6/10">6/10</option>
+<option value="5/10">5/10</option>
+<option value="4/10">4/10</option>
+<option value="3/10">3/10</option>
+<option value="2/10">2/10</option>
+<option value="1/10">1/10</option>
+<option value="0/10">0/10</option>
+
+</select>
+
+
+
+
+
+<label>
+Genre:
+</label>
+
+
+<input 
+id="genre"
+placeholder="Example: Post-Hardcore">
+
+
+
+
+
+<label>
+Year:
+</label>
+
+
+<input 
+id="year"
+placeholder="Example: 2006">
+
+
+
+
+
+<label>
+Review:
+</label>
+
+
+<textarea
+id="review-body"
+rows="8"
+required
+placeholder="Write your thoughts...">
+</textarea>
+
+
+
+
+
+<button 
+type="submit"
+id="submit-btn">
+
+Publish Review
+
+</button>
+
+
+
+</form>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function checkPassword(){
+
+const password =
+document.getElementById("password-input").value;
+
+
+if(password==="GABRIEL_2668w"){
+
+
+document.getElementById("password-screen").style.display="none";
+
+document.getElementById("review-panel").style.display="block";
+
+
+}
+
+else{
+
+
+document.getElementById("password-error").innerText=
+"Incorrect password";
+
+
+}
+
+
+}
+
+
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="posting.js"></script>
+
+
 </body>
 </html>
