@@ -3,39 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Music Reviews</title>
+  <title>Create Review</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <h1>MELONDY</h1>
-      <a href="create.html" class="create-btn">+ Create Review</a>
+  <div class="form-container">
+    <div class="form-header">
+      <h2>Post New Review</h2>
+      <a href="index.html" class="back-link">← Back to Home</a>
     </div>
-  </header>
+    
+    <form id="review-form">
+      <label for="spotify-id">Spotify Album Link or ID:</label>
+      <input type="text" id="spotify-id" placeholder="e.g. https://open.spotify.com/album/..." required />
 
-  <main>
-    <div class="filters">
-      <button onclick="filterBy('ALL')" class="active">ALL</button>
-      <button onclick="filterBy('CLASSIC')">CLASSIC</button>
-      <button onclick="filterBy('10/10')">10/10</button>
-      <button onclick="filterBy('9/10')">9/10</button>
-      <button onclick="filterBy('8/10')">8/10</button>
-      <button onclick="filterBy('7/10')">7/10</button>
-      <button onclick="filterBy('6/10')">6/10</button>
-      <button onclick="filterBy('5/10')">5/10</button>
-      <button onclick="filterBy('4/10')">4/10</button>
-      <button onclick="filterBy('3/10')">3/10</button>
-      <button onclick="filterBy('2/10')">2/10</button>
-      <button onclick="filterBy('1/10')">1/10</button>
-      <button onclick="filterBy('0/10')">0/10</button>
-      <button onclick="filterBy('NOT GOOD')">NOT GOOD</button>
-    </div>
+      <label for="rating">Rating Badge:</label>
+      <select id="rating" name="rating">
+        <option value="CLASSIC">CLASSIC/10</option>
+        <option value="10/10">10/10</option>
+        <option value="9/10">9/10</option>
+        <option value="8/10">8/10</option>
+        <option value="7/10">7/10</option>
+        <option value="6/10">6/10</option>
+        <option value="5/10">5/10</option>
+        <option value="4/10">4/10</option>
+        <option value="3/10">3/10</option>
+        <option value="2/10">2/10</option>
+        <option value="1/10">1/10</option>
+        <option value="0/10">0/10</option>
+        <option value="NOT GOOD">NOT GOOD</option>
+        <option value="OTHER">OTHER SCORES</option>
+        <option value="NO SCORE">NO SCORE</option>
+      </select>
 
-    <div id="reviews-grid"></div>
-  </main>
+      <label for="review-body">Review Text:</label>
+      <textarea id="review-body" rows="6" placeholder="Write your thoughts..." required></textarea>
+
+      <button type="submit" id="submit-btn">Publish Review</button>
+    </form>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="fetch.js"></script>
+  <script src="posting.js"></script>
 </body>
 </html>
