@@ -10,12 +10,12 @@
   <div class="form-container">
     <div class="form-header">
       <h2>Post New Review</h2>
-      <a href="index.html" class="back-link">← Back to Home</a>
+      <a href="index.html" class="back-link">← Home</a>
     </div>
     
     <form id="review-form">
-      <label for="spotify-id">Spotify Album Link or ID:</label>
-      <input type="text" id="spotify-id" placeholder="e.g. https://open.spotify.com/album/..." required />
+      <label for="spotify-id">Spotify Album Link or Album Name:</label>
+      <input type="text" id="spotify-id" placeholder="Paste Spotify URL or Album Name" required />
 
       <label for="rating">Rating Badge:</label>
       <select id="rating" name="rating">
@@ -37,7 +37,7 @@
       </select>
 
       <label for="review-body">Review Text:</label>
-      <textarea id="review-body" rows="6" placeholder="Write your thoughts..." required></textarea>
+      <textarea id="review-body" rows="6" placeholder="Type your review here..." required></textarea>
 
       <button type="submit" id="submit-btn">Publish Review</button>
     </form>
